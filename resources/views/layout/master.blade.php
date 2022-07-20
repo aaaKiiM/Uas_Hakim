@@ -214,7 +214,7 @@
                         <li class="nav-header">Data</li>
                         <li class="nav-item">
                             <a href="../calendar.html" class="nav-link">
-                                <i class="nav-icon far fa-calendar-alt"></i>
+                                <i class="nav-icon fas fa-table"></i>
                                 <p>
                                     Data Toko
                                 </p>
@@ -222,7 +222,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="../gallery.html" class="nav-link">
-                                <i class="nav-icon far fa-image"></i>
+                                <i class="nav-icon fas fa-table"></i>
                                 <p>
                                     Data Produk
                                 </p>
@@ -230,7 +230,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="../kanban.html" class="nav-link">
-                                <i class="nav-icon fas fa-columns"></i>
+                                <i class="nav-icon fas fa-table "></i>
                                 <p>
                                     Data User
                                 </p>
