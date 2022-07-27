@@ -73,7 +73,10 @@ class TokoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $toko = Toko::find($id);
+        $user = User::all();
+
+        return view('pages.toko.edit',compact('toko','user'));
     }
 
     /**
@@ -85,7 +88,15 @@ class TokoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $toko = Toko::find($id);
+
+        $toko->users_id = $request->user;
+        $toko->nama_toko = $request->nama;
+        $toko->alamat_toko = $request->alamat;
+        $toko->no_hp_toko = $request->hp;
+        $toko->save();
+
+        return redirect('/toko');
     }
 
     /**
@@ -96,6 +107,8 @@ class TokoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $toko = Toko::find($id);
+        $toko->delete();
+        return redirect('/toko');
     }
 }

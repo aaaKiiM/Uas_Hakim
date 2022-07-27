@@ -43,24 +43,51 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Nomor</th>
-                                            <th>Username</th>
-                                            <th>Nama Toko</th>
-                                            <th>Alamat Toko</th>
-                                            <th>No Hp Toko</th>
-                                            <th>Action</th>
+                                            <th class="text-center">Nomor</th>
+                                            <th class="text-center">Username</th>
+                                            <th class="text-center">Nama Toko</th>
+                                            <th class="text-center">Alamat Toko</th>
+                                            <th class="text-center">No Hp Toko</th>
+                                            <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @forelse ( $toko as $isi)
                                             <tr>
-                                                <td>{{ $nomor++ }}</td>
-                                                <td>{{ $isi->users->name }}</td>
-                                                <td>{{ $isi->nama_toko }}</td>
-                                                <td>{{ $isi->alamat_toko }}</td>
-                                                <td>{{ $isi->no_hp_toko }}</td>
-                                                <td>
-                                                    <a href="/mahasiswa/edit/{{$isi->id}}" class="btn btn-primary btn-sm">Edit</a>
+                                                <td class="text-center">{{ $nomor++ }}</td>
+                                                <td class="text-center">{{ $isi->users->name }}</td>
+                                                <td class="text-center">{{ $isi->nama_toko }}</td>
+                                                <td class="text-center">{{ $isi->alamat_toko }}</td>
+                                                <td class="text-center">{{ $isi->no_hp_toko }}</td>
+                                                <td class="text-center">
+                                                    <a href="/toko/edit/{{$isi->id}}" class="btn btn-primary btn-sm">Edit</a>
+                                                    <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default1{{ $isi->id }}">Hapus</a>
+                                                    <div class="modal fade" id="modal-default1{{ $isi->id }}">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title">Hapus Kategori</h4>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <p>Yakin Toko <b>{{ $isi->nama_toko }}</b> Dihapus ?</p>
+                                                                    </div>
+                                                                    <div class="modal-footer justify-content-between">
+                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                                                                        <form action="/toko/{{$isi->id}}" method="post">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            <button type="submit" class="btn btn-primary">Hapus</button>
+                                                                        </form>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <!-- /.modal-content -->
+                                                        </div>
+                                                        <!-- /.modal-dialog -->
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @empty
