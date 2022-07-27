@@ -11,6 +11,10 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 </head>
@@ -213,26 +217,34 @@
                         </li>
                         <li class="nav-header">Data</li>
                         <li class="nav-item">
-                            <a href="../calendar.html" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
+                            <a href="/toko" class="nav-link @yield('dataToko')">
+                                <i class="nav-icon fas fa-store"></i>
                                 <p>
                                     Data Toko
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../gallery.html" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
+                            <a href="/produk" class="nav-link @yield('dataProduk')">
+                                <i class="nav-icon fas fa-bread-slice"></i>
                                 <p>
                                     Data Produk
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../kanban.html" class="nav-link">
-                                <i class="nav-icon fas fa-table "></i>
+                            <a href="/user" class="nav-link @yield('dataUser')">
+                                <i class="nav-icon fas fa-user "></i>
                                 <p>
                                     Data User
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/kategori" class="nav-link @yield('dataKategori')">
+                                <i class="nav-icon fas fa-list "></i>
+                                <p>
+                                    Kategori
                                 </p>
                             </a>
                         </li>
@@ -444,8 +456,71 @@
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('plugins/jszip/jszip.min.js') }}"></script>
+    <script src="{{ asset('plugins/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('plugins/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+    <script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            });
+        });
+    </script>
+    <script type="text/javascript">
+
+        var rupiah = document.getElementById('rupiah');
+        rupiah.addEventListener('keyup', function(e){
+            // tambahkan 'Rp.' pada saat form di ketik
+            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+            rupiah.value = formatRupiah(this.value, 'Rp. ');
+        });
+
+        /* Fungsi formatRupiah */
+        function formatRupiah(angka, prefix){
+            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split   		= number_string.split(','),
+            sisa     		= split[0].length % 3,
+            rupiah     		= split[0].substr(0, sisa),
+            ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+            // tambahkan titik jika yang di input sudah menjadi angka ribuan
+            if(ribuan){
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+        }
+    </script>
+    <script>
+        $(function () {
+            bsCustomFileInput.init();
+        });
+    </script>
 </body>
 
 </html>

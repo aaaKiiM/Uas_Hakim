@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Toko;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TokoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +19,9 @@ class TokoController extends Controller
      */
     public function index()
     {
-        //
+        $toko = Toko::all();
+        $nomor = 1;
+        return view('pages.toko.index', compact('nomor','toko'));
     }
 
     /**
@@ -23,7 +31,8 @@ class TokoController extends Controller
      */
     public function create()
     {
-        //
+        $user = User::all();
+        return view('pages.toko.form', compact('user'));
     }
 
     /**
@@ -34,7 +43,15 @@ class TokoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $toko = new Toko;
+
+        $toko->users_id = $request->user;
+        $toko->nama_toko = $request->nama;
+        $toko->alamat_toko = $request->alamat;
+        $toko->no_hp_toko = $request->hp;
+        $toko->save();
+
+        return redirect('/toko');
     }
 
     /**

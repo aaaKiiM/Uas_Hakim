@@ -2,17 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kategori;
-use App\Models\Produk;
-use App\Models\Toko;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class ProdukController extends Controller
+class UserController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -20,9 +14,9 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $produk = Produk::all();
         $nomor = 1;
-        return view('pages.produk.index', compact('nomor','produk'));
+        $user  = User::all();
+        return view('pages.user.index', compact('user','nomor'));
     }
 
     /**
@@ -32,9 +26,7 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        $toko = Toko::all();
-        $kategori = Kategori::all();
-        return view('pages.produk.form', compact('toko','kategori'));
+        //
     }
 
     /**
@@ -45,26 +37,7 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
-        $validasi = $request->validate(
-            [
-                'foto' => 'required|file|mimes:png,jpg,jpeg|max:2048'
-            ]
-        );
-        $nama_file = $request->foto->getClientOriginalName();
-        $upload3 = $request->foto->move('img/produk', $nama_file);
-
-        $produk = new Produk;
-
-        $produk->tokos_id = $request->toko;
-        $produk->kategoris_id = $request->kategori;
-        $produk->nama_kue = $request->nama;
-        $produk->harga = $request->harga;
-        $produk->keterangan = $request->ket;
-        $produk->stock = $request->stock;
-        $produk->foto = $request->foto->getClientOriginalName();
-        $produk->save();
-
-        return redirect('/produk');
+        //
     }
 
     /**

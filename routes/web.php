@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\TokoController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,3 +39,12 @@ Route::post('/toko/store', [TokoController::class, 'store']);
 Route::get('/toko/edit/{ID}', [TokoController::class, 'edit']);
 Route::put('/toko/edit/{ID}', [TokoController::class, 'update']);
 Route::delete('/toko/{ID}', [TokoController::class, 'destroy']);
+
+Route::get('/kategori', [KategoriController::class, 'index']);
+Route::get('/kategori/form', [KategoriController::class, 'create']);
+Route::post('/kategori/store', [KategoriController::class, 'store']);
+Route::get('/kategori/edit/{ID}', [KategoriController::class, 'edit']);
+Route::put('/kategori/edit/{ID}', [KategoriController::class, 'update']);
+Route::delete('/kategori/{ID}', [KategoriController::class, 'destroy']);
+
+Route::get('/user', [UserController::class, 'index']);

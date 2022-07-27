@@ -7,5 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Produk extends Model
 {
-    use HasFactory;
+    public function tokos()
+    {
+        return $this->belongsTo(Toko::class,'tokos_id');
+    }
+
+    public function kategoris()
+    {
+        return $this->belongsTo(Kategori::class, 'kategoris_id');
+    }
+
 }

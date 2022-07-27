@@ -24,7 +24,7 @@
                 <a href="/" class="h1"><b>Admin</b>LTE</a>
             </div>
             <div class="card-body">
-                <p class="login-box-msg">Register a new membership</p>
+                <p class="login-box-msg">Daftar</p>
 
                 <form action="{{ route('register') }}" method="post">
                     @csrf
@@ -73,7 +73,7 @@
                         </select>
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                                <span class="fas fa-circle-info"></span>
                             </div>
                         </div>
                     </div>
@@ -93,19 +93,12 @@
                         <!-- /.col -->
                     </div>
                 </form>
-
                 <div class="social-auth-links text-center">
-                    <a href="#" class="btn btn-block btn-primary">
-                        <i class="fab fa-facebook mr-2"></i>
-                        Sign up using Facebook
-                    </a>
-                    <a href="#" class="btn btn-block btn-danger">
-                        <i class="fab fa-google-plus mr-2"></i>
-                        Sign up using Google+
+                    <a href="/login" class="btn btn-block btn-primary">
+                        <i class="fas fa-user mr-2"></i>
+                        Sudah Punya Akun
                     </a>
                 </div>
-
-                <a href="login.html" class="text-center">I already have a membership</a>
             </div>
             <!-- /.form-box -->
         </div><!-- /.card -->
