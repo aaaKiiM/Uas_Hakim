@@ -112,7 +112,7 @@
                                                         </div>
                                                         <!-- /.modal-dialog -->
                                                     </div>
-                                                    <!-- Modal Edit -->
+                                                    <!-- Modal Hapus -->
                                                 </td>
                                             </tr>
                                         @empty

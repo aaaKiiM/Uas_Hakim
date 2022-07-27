@@ -86,7 +86,11 @@ class ProdukController extends Controller
      */
     public function edit($id)
     {
-        //
+        $produk = Produk::find($id);
+        $kategori = Kategori::all();
+        $toko = Toko::all();
+
+        return view('pages.produk.edit',compact('produk','kategori','toko'));
     }
 
     /**
@@ -98,7 +102,17 @@ class ProdukController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $produk = Produk::find($id);
+
+        $produk->tokos_id = $request->toko;
+        $produk->kategoris_id = $request->kategori;
+        $produk->nama_kue = $request->nama;
+        $produk->harga = $request->harga;
+        $produk->keterangan = $request->ket;
+        $produk->stock = $request->stock;
+        $produk->save();
+
+        return redirect('/produk');
     }
 
     /**
@@ -109,6 +123,8 @@ class ProdukController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $produk = Produk::find($id);
+        $produk->delete();
+        return redirect('/produk');
     }
 }
