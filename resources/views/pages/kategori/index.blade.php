@@ -24,11 +24,9 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-6">
                         <div class="card">
                             <div class="card-header">
-                                <a href="/kategori/form" class="btn btn-primary">Tambah Kategori</a>
-
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"
                                         title="Collapse">
@@ -41,7 +39,7 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
+                                <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th class="text-center">Nomor</th>
@@ -125,6 +123,23 @@
                         <!-- /.card -->
                     </div>
                     <!-- /.col -->
+                    <div class="col-6">
+                        <div class="card">
+                            <form action="/kategori/store" method="POST">
+                                @csrf
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>Kategori</label>
+                                        <input type="text" name="kategori" class="form-control" placeholder="Masukkan Kategori">
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Tambah</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.row -->
             </div>

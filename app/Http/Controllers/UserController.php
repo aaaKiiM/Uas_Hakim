@@ -14,6 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        $this->authorize('create',User::class);
         $nomor = 1;
         $user  = User::all();
         return view('pages.user.index', compact('user','nomor'));

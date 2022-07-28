@@ -18,7 +18,6 @@ return new class extends Migration
             $table->bigInteger('tokos_id');
             $table->bigInteger('kategoris_id');
             $table->string('nama_kue');
-            $table->string('kategori');
             $table->string('harga');
             $table->string('keterangan');
             $table->string('stock');
