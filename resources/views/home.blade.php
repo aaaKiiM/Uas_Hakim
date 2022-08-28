@@ -39,7 +39,10 @@
                 </div>
             </div>
             <div class="card-body">
-                Start creating your amazing application!
+                <form action="/post" method="POST">
+                    @csrf
+                    <button type="submit">aaaaaa</button>
+                </form>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">

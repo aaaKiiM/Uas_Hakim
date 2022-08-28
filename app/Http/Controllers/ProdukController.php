@@ -6,6 +6,8 @@ use App\Models\Kategori;
 use App\Models\Produk;
 use App\Models\Toko;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProdukController extends Controller
 {
@@ -64,7 +66,11 @@ class ProdukController extends Controller
         $produk->foto = $request->foto->getClientOriginalName();
         $produk->save();
 
-        return redirect('/produk');
+        // $request->validate([
+        //     'title' => 'required|min:3',
+        //     'body' => 'required|min:3'
+        // ]);
+        return redirect('/produk')->with('success', 'Task Created Successfully!');
     }
 
     /**

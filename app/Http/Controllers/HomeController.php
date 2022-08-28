@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +23,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // Alert::toast('Your Post as been submited!','success');
         return view('home');
+    }
+
+    public function post(Request $request)
+    {
+        return redirect('/')->with('toast_success', 'Task Created Successfully!');
     }
 }
